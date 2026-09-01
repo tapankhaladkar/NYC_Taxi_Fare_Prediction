@@ -31,11 +31,18 @@ The notebook (`new-york-taxi-fare-prediction.ipynb`) walks through:
 | Linear Regression  | R² ≈ 0.02 — coordinates/time alone are weak linear predictors |
 | Ridge Regression   | Best CV RMSE ≈ 9.59 (alpha = 100)        |
 | Lasso Regression   | Best CV RMSE ≈ 9.59 (alpha = 0.01)       |
-| **XGBoost**        | **R² ≈ 0.83, MAE ≈ 2.37, RMSE ≈ 5.38** — best performer |
+| **XGBoost**        | **MAE ≈ 2.37, RMSE ≈ 5.38** — best performer |
 
 Adding the haversine `total_distance` feature is the single biggest driver
 of model performance, and XGBoost substantially outperforms the linear
 models on this data.
+
+> **Note:** the notebook's XGBoost R² was previously computed as
+> `sqrt(r2_score(...))`, a bug that inflated the true R² (≈0.69) to ≈0.83.
+> This has been fixed in the notebook, and the XGBoost train/test split was
+> also aligned with the one used for the linear models (`test_size=0.2,
+> random_state=42`) so all four models are now compared on the same
+> held-out data. Re-run the notebook to regenerate the corrected metrics.
 
 ## Project Structure
 
